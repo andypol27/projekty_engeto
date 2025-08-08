@@ -40,7 +40,11 @@ users = {
     }
 
 user_input = input("Zadejte své uživatelské jméno a heslo oddělené mezerou:")
-user, password = user_input.split()
+parts = user_input.split()
+if len(parts) == 2:
+     user,password = parts
+else:
+    print("Musíš zadat přesně dvě slova!")
 
 import time
 if user not in users or users[user] != password:
@@ -63,26 +67,25 @@ else:
        
     
  
-uzivatel_input = input("Enter a number btw. (1 to 3) to select:")        
-for text in enumerate(TEXTS):
-    
+cislo_textu = input("Enter a number btw. (1 to 3) to select:")        
+ 
    
-    if uzivatel_input.isdigit():
-        cislo_textu=int(uzivatel_input)
-        if cislo_textu <= len(TEXTS):
-           vybrany_text=TEXTS[cislo_textu-1]
-           break
+if cislo_textu.isdigit():
+        text=int(cislo_textu)
+        if text <= len(TEXTS):
+           text=TEXTS[text-1]
+           
 
         else:
            print("Takový text tu není, ukončuji program.")
            exit()
-    else:
+else:
         print("Chybný vstup, není číslo, ukončuji program.")
         exit()
   
         
 print(40*"-")   
-words = vybrany_text.split()
+words = text.split()
 pocet_slov = len(words) 
 pocet_uppercase = sum(1 for word in words if word.isupper())
 pocet_lowercase = sum(1 for word in words if word.islower())
